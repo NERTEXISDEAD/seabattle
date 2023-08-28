@@ -11,7 +11,7 @@
 <body>
 	<header>
 		<h1>Морской бой</h1>
-		<h6>Sea battle12312312</h6>
+		<h6>Sea battle</h6>
 	</header>
 	<section>
 		<div id="leftFieldText">
@@ -35,13 +35,12 @@
 	</section>
 	<nav>
 		<ul>
-			<li>Старт</li>
-			<li>Очистить</li>
-			<li>Переименовать</li>
+			<li id=reload>Старт</li>
+			<li onclick="emptyCellsToField('#leftField');emptyCellsToField('#rightField');">Очистить</li>
 		</ul>
 	</nav>
 
-	<script src="script.js"></script>
+	<script src="js/script.js"></script>
 </body>
 
 </html>
