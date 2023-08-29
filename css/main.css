@@ -28,6 +28,7 @@ h6 {
 nav ul {
 	display: block;
 	padding: 7px;
+	height: 100px;
 }
 
 
@@ -150,7 +151,7 @@ section div {
 
 #sea {
 	background: linear-gradient(rgb(0, 153, 255), rgb(255, 255, 255));
-	height: 220px;
+	margin-top: 15px
 }
 
 .waterColor {
@@ -160,7 +161,10 @@ section div {
 #blinkText {
 	color: rgb(0, 0, 0);
 	animation: blinkText 1s cubic-bezier(0.42, 0, 0.58, 1) infinite;
-	padding: 13px;
+}
+
+#info {
+	padding-top: 5px;
 }
 
 .cellColor {
@@ -204,6 +208,78 @@ section div {
 	margin: 0;
 	box-sizing: border-box;
 }
+
+.fireColor {
+	background-color: rgb(0, 153, 255);
+}
+
+.fireColor:after {
+	content: '';
+	display: block;
+	position: relative;
+	width: 30px;
+	height: 10px;
+	border-radius: 0 0 12px 12px;
+	background-color: rgb(30, 0, 0);
+	margin: 0;
+}
+
+.fireColor:before {
+	content: '';
+	display: block;
+	position: relative;
+	width: 25px;
+	height: 20px;
+	border-radius: 0 50px 0 0;
+	border-left: 15px solid rgb(0, 153, 255);
+	background-color: rgb(255, 255, 255);
+	margin: 0;
+	box-sizing: border-box;
+	animation: fire 2s ease infinite;
+}
+
+.flagColor {
+	background-color: rgb(255, 255, 100);
+}
+
+.flagColor:before {
+	content: '';
+	display: block;
+	position: relative;
+	width: 15px;
+	height: 10px;
+	top: 5px;
+	left: 10px;
+	background-color: rgb(0, 255, 0);
+}
+
+.flagColor:after {
+	content: '';
+	display: block;
+	position: relative;
+	height: 20px;
+	width: 2px;
+	top: -5px;
+	left: 10px;
+	background-color: rgb(113, 63, 18);
+}
+
+/*блок для блокировки нажатий и эффекта затемнения поля*/
+#rightShade,
+#leftShade {
+	display: block;
+	width: 300px;
+	height: 300px;
+	background: #000;
+	position: relative;
+	opacity: 0.1;
+}
+
+#rightShade {
+	display: none;
+}
+
+#info {}
 
 .editorial {
 	display: block;
@@ -302,5 +378,23 @@ section div {
 
 	100% {
 		opacity: 1;
+	}
+}
+
+/*анимация огня*/
+@keyframes fire {
+	0% {
+		background-color: rgb(255, 255, 255);
+		width: 25px;
+	}
+
+	50% {
+		background-color: rgb(255, 0, 0);
+		width: 22px;
+	}
+
+	100% {
+		background-color: rgb(255, 255, 255);
+		width: 25px;
 	}
 }

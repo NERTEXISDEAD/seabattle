@@ -3,6 +3,9 @@ var leftText = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
 var lengthShip;
 var count;
 var nameGamer;
+var arrCellsNumbers = [];
+
+for (var i = 0; i < 100; i++) arrCellsNumbers[i] = i;//создаем массив для ходов компьютера
 
 // функция нанесения надписей слева и справа от полей получает на вход left или right
 
@@ -25,6 +28,9 @@ function emptyCellsToField(field) {
 $('#reload').click(function () {//по клику создается поле боя
 	emptyCellsToField('#leftField');//очищается левое поле
 	emptyCellsToField('#rightField');//очищается правое поле
+	//"шторы" для блокировки нажатия во время чужого хода
+	$('#leftField').append('<div id="leftShade"></div>');
+	$('#rightField').append('<div id="rightShade"></div>');
 	for (lengthShip = 4; lengthShip >= 1; lengthShip--) {
 		for (count = (5 - lengthShip); count >= 1; count--) {
 			//получается массив координат частей корабля
@@ -41,6 +47,7 @@ $('#reload').click(function () {//по клику создается поле б
 	//пустые ячейки заполняются "водой"
 	colorToField('#leftField');
 	colorToField('#rightField');
+	whoseShot(1);
 });
 
 // функция расстановки частей кораблей получает на вход номер ячейки и id поля
@@ -135,6 +142,109 @@ function getName() {
 	nameGamer = $('input').val();
 	$('#yourName').toggle();
 	$('#info').html('<p><h3 id="blinkText">' + nameGamer + ', для начала игры нажмите "Старт"</h3></p>');
+}
+
+// функция выстрела игрока получает на вход id поля+ячейки и boolean значение (true-попал, false-мимо)
+
+function shot(cell, x) {
+	if ($(cell).hasClass('flagColor')) { return false; }
+	if (($(cell).hasClass('fireColor')) ||
+		($(cell).hasClass('cellColor')) ||
+		($(cell).hasClass('ship')) && ($(cell).parent('#rightField'))) {
+	}
+	else {
+		computerShot();
+	}
+	if (x) {
+		$(cell).removeClass('shipColor waterColor cellColor fireColor').addClass('fireColor');
+	}
+	else {
+		$(cell).removeClass('shipColor waterColor cellColor fireColor').addClass('cellColor');
+	}
+	checkWinner();
+}
+
+// функция выстрела компьютера
+
+function computerShot() {
+	whoseShot(0);
+	var i = randomInteger(0, arrCellsNumbers.length - 1);
+	if (arguments[0] == 'boom') {
+		i = arguments[1];
+		if (Math.floor(i / 10) > 9) i = arguments[1] - 1;
+	}
+	// удаляется ячейка из массива
+	arrCellsNumbers.splice(i, 1);
+	var cell = '#leftField #cell' + arrCellsNumbers[i];
+	if (randomInteger(0, 5) > $('select').val() && $(cell).hasClass('waterColor')) {
+		cell = '#' + $('.shipColor:first').attr('id');
+		console.log(cell);
+		arrCellsNumbers.splice(i, 1);
+	}
+	// задается задержка чтобы показать что противник думает
+	setTimeout(function () {
+		if ($(cell).hasClass('ship')) {
+			$(cell).removeClass('shipColor waterColor cellColor fireColor').addClass('fireColor');
+			computerShot('boom', i);
+		}
+		else {
+			$(cell).removeClass('shipColor waterColor cellColor fireColor').addClass('cellColor');;
+		}
+		$('#leftShade').toggle();
+		$('#rightShade').toggle();
+		whoseShot(1);
+	}, 400);
+}
+
+//функция вызывается при нажатии на ячейку и ставит флажок для обозначения ячейки куда не нужно стрелять получает на вход номер ячейки
+
+function blocker(i) {
+	if ($('#rightField #cell' + i).hasClass('flagColor')) {
+		$('#rightField #cell' + i).removeClass('flagColor');
+		$('#rightField #cell' + i).removeClass('shipColor waterColor cellColor fireColor').addClass('waterColor');
+	}
+	else if ($('#rightField #cell' + i).hasClass('waterColor')) {
+		$('#rightField #cell' + i).addClass('flagColor');
+	}
+}
+
+// функция отображения надписи чей ход получает на вход true(ход игрока) или false(ход компьютера)
+
+function whoseShot(x) {
+	if (x) {
+		$('#info').html("<p><h3>Ваш ход</h3></p>");
+	}
+	else {
+		$('#info').html("<p><h3>Противник думает</h3></p>");
+		$('#leftShade').toggle();
+		$('#rightShade').toggle();
+	}
+	checkWinner();
+}
+
+function checkWinner() {
+	var winner;
+	comp = 0;
+	gamer = 0;
+	for (var i = 0; i < 100; i++) {
+		if ($('#rightField #cell' + i).hasClass('fireColor')) gamer++;
+		if ($('#leftField #cell' + i).hasClass('fireColor')) comp++;
+	}
+	if (gamer < 20 && comp < 20) {
+		console.log('winner not');
+	}
+	else if (gamer > 19 && comp < 20) {
+		$('#info').html('<p><h3 id="blinkText">Игрок ' + name + ' победил!<br>Нажмите "Старт" для новой игры</h3></p>');
+		colorToField(' ', true);
+		$('#leftShade').show();
+		$('#rightShade').show();
+	}
+	else {
+		$('#info').html('<p><h3 id="blinkText">Компьютер победил!<br>Нажмите "Старт" для новой игры</h3></p>');
+		colorToField(' ', true);
+		$('#leftShade').show();
+		$('#rightShade').show();
+	}
 }
 
 
