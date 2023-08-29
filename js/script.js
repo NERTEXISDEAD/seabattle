@@ -1,5 +1,8 @@
 var topText = ['А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ж', 'З', 'И', 'К'];
-var leftText = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
+var leftText = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
+var lengthShip;
+var count;
+var nameGamer;
 
 // функция нанесения надписей слева и справа от полей получает на вход left или right
 
@@ -34,6 +37,7 @@ $('#reload').click(function () {//по клику создается поле б
 			}
 		}
 	}
+	$('#leftFieldText p').text(nameGamer);
 	//пустые ячейки заполняются "водой"
 	colorToField('#leftField');
 	colorToField('#rightField');
@@ -124,6 +128,14 @@ function colorToField(field) {
 		}
 	}
 };
+
+// функция получает имя пользователя из инпута
+
+function getName() {
+	nameGamer = $('input').val();
+	$('#yourName').toggle();
+	$('#info').html('<p><h3 id="blinkText">' + nameGamer + ', для начала игры нажмите "Старт"</h3></p>');
+}
 
 
 emptyCellsToField('#leftField');

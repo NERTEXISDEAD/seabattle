@@ -6,40 +6,79 @@
 	<title>Sea Battle</title>
 	<link rel="stylesheet" href="css/main.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,200;1,400&display=swap"
+		rel="stylesheet">
 </head>
 
 <body>
-	<header>
-		<h1>Морской бой</h1>
-		<h6>Sea battle</h6>
-	</header>
-	<section>
-		<div id="leftFieldText">
-			<p>Игрок</p>
-			<div id="leftText"></div>
-			<div id="leftField">
-				<div id="leftShade">
+	<div class="container">
+		<header>
+			<h1>Морской бой</h1>
+			<h6>Sea battle</h6>
+		</header>
+		<section>
+			<div id="leftFieldText">
+				<p>Игрок</p>
+				<div id="leftText"></div>
+				<div id="leftField">
+					<div id="leftShade">
+					</div>
+				</div>
+				<div id="leftTextLeft"></div>
+			</div>
+			<div id="rightFieldText">
+				<p>Компьютер</p>
+				<div id="rightText"></div>
+				<div id="rightField">
+					<div id="rightShade">
+					</div>
+				</div>
+				<div id="rightTextLeft"></div>
+			</div>
+		</section>
+		<div id="sea">
+			<div id="info"></div>
+			<nav>
+				<ul>
+					<li id=reload>Старт</li>
+					<li onclick="emptyCellsToField('#leftField');emptyCellsToField('#rightField');">Очистить</li>
+					<li onclick="getName()">Переименовать</li>
+				</ul>
+			</nav>
+			<div id="yourName">
+				<div>
+					<span>
+						<p>Введите имя игрока</p>
+					</span>
+					<input type="text" id="name" value="Игрок" />
+					<button onclick="getName()">OK</button>
 				</div>
 			</div>
-			<div id="leftTextLeft"></div>
 		</div>
-		<div id="rightFieldText">
-			<p>Компьютер</p>
-			<div id="rightText"></div>
-			<div id="rightField">
-				<div id="rightShade">
-				</div>
-			</div>
-			<div id="rightTextLeft"></div>
-		</div>
-	</section>
-	<nav>
-		<ul>
-			<li id=reload>Старт</li>
-			<li onclick="emptyCellsToField('#leftField');emptyCellsToField('#rightField');">Очистить</li>
-		</ul>
-	</nav>
-
+		<svg class="editorial" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+			viewBox="0 24 150 28 " preserveAspectRatio="none">
+			<defs>
+				<path id="gentle-wave" d="M-160 44c30 0 
+    58-18 88-18s
+    58 18 88 18 
+    58-18 88-18 
+    58 18 88 18
+    v44h-352z" />
+			</defs>
+			<g class="parallax1">
+				<use xlink:href="#gentle-wave" x="50" y="3" fill="#f461c1" />
+			</g>
+			<g class="parallax2">
+				<use xlink:href="#gentle-wave" x="50" y="0" fill="#4579e2" />
+			</g>
+			<g class="parallax3">
+				<use xlink:href="#gentle-wave" x="50" y="9" fill="#3461c1" />
+			</g>
+			<g class="parallax4">
+				<use xlink:href="#gentle-wave" x="50" y="6" fill="#fff" />
+			</g>
+		</svg>
+	</div>
 	<script src="js/script.js"></script>
 </body>
 

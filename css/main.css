@@ -1,5 +1,6 @@
 * {
 	box-sizing: border-box;
+	font-family: 'Montserrat', sans-serif, cursive;
 }
 
 body {
@@ -26,8 +27,10 @@ h6 {
 
 nav ul {
 	display: block;
-	padding: 0;
+	padding: 7px;
 }
+
+
 
 /*кнопки навигации*/
 nav ul li {
@@ -35,6 +38,7 @@ nav ul li {
 	list-style: none;
 	width: 150px;
 	cursor: pointer;
+	margin: 10px;
 	border: 1px solid #333;
 	border-radius: 5px;
 	background: #ddd;
@@ -42,6 +46,11 @@ nav ul li {
 
 nav ul li:hover {
 	background: rgb(100, 100, 100);
+}
+
+.container {
+	width: auto;
+	height: 750px;
 }
 
 
@@ -97,6 +106,7 @@ section div {
 	float: left;
 }
 
+
 /*параметры клетки*/
 .cell {
 	border: 1px solid #000;
@@ -114,9 +124,43 @@ section div {
 	opacity: 0.5;
 }
 
+/*всплывающие окно*/
+#yourName {
+	text-align: center;
+	display: block;
+	position: fixed;
+	margin: 0 auto;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(#eee, transparent, #eee, #eee);
+	left: 0;
+	top: 0;
+}
+
+#yourName div {
+	width: 300px;
+	height: 100px;
+	background: #aaa;
+	margin: 100px auto;
+	border-radius: 5px;
+	padding: 5px;
+}
+
 /*классы цветов*/
+
+#sea {
+	background: linear-gradient(rgb(0, 153, 255), rgb(255, 255, 255));
+	height: 220px;
+}
+
 .waterColor {
 	background-color: rgb(0, 153, 255);
+}
+
+#blinkText {
+	color: rgb(0, 0, 0);
+	animation: blinkText 1s cubic-bezier(0.42, 0, 0.58, 1) infinite;
+	padding: 13px;
 }
 
 .cellColor {
@@ -159,4 +203,104 @@ section div {
 	background-color: rgb(255, 255, 255);
 	margin: 0;
 	box-sizing: border-box;
+}
+
+.editorial {
+	display: block;
+	width: 100%;
+	height: 60px;
+	max-height: 60px;
+	margin: 0;
+	z-index: 5;
+	bottom: 0;
+	position: absolute;
+	left: 0px;
+	float: left;
+}
+
+.parallax1>use {
+	animation: move-forever1 10s linear infinite;
+
+	&:nth-child(1) {
+		animation-delay: -2s;
+	}
+}
+
+.parallax2>use {
+	animation: move-forever2 8s linear infinite;
+
+	&:nth-child(1) {
+		animation-delay: -2s;
+	}
+}
+
+.parallax3>use {
+	animation: move-forever3 6s linear infinite;
+
+	&:nth-child(1) {
+		animation-delay: -2s;
+	}
+}
+
+.parallax4>use {
+	animation: move-forever4 4s linear infinite;
+
+	&:nth-child(1) {
+		animation-delay: -2s;
+	}
+}
+
+@keyframes move-forever1 {
+	0% {
+		transform: translate(85px, 0%);
+	}
+
+	100% {
+		transform: translate(-90px, 0%);
+	}
+}
+
+@keyframes move-forever2 {
+	0% {
+		transform: translate(-90px, 0%);
+	}
+
+	100% {
+		transform: translate(85px, 0%);
+	}
+}
+
+@keyframes move-forever3 {
+	0% {
+		transform: translate(85px, 0%);
+	}
+
+	100% {
+		transform: translate(-90px, 0%);
+	}
+}
+
+@keyframes move-forever4 {
+	0% {
+		transform: translate(-90px, 0%);
+	}
+
+	100% {
+		transform: translate(85px, 0%);
+	}
+}
+
+/*мерцающий текст*/
+@keyframes blinkText {
+	0% {
+		opacity: 1;
+	}
+
+	70% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
 }
