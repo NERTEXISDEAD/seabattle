@@ -31,22 +31,35 @@ nav ul {
 	height: 100px;
 }
 
+#showEnemy {
+	background: transparent;
+	border: none;
+	opacity: 0.2;
+}
 
+#showEnemy:hover {
+	opacity: 1;
+}
 
 /*кнопки навигации*/
 nav ul li {
 	display: inline-block;
-	list-style: none;
-	width: 150px;
+	outline: 0;
+	border: 0;
+	margin: 5px;
 	cursor: pointer;
-	margin: 10px;
-	border: 1px solid #333;
-	border-radius: 5px;
-	background: #ddd;
+	background-color: white;
+	border-radius: 4px;
+	padding: 8px 16px;
+	font-size: 16px;
+	font-weight: 600;
+	color: rgb(43, 108, 176);
+	border: 1px solid rgb(66, 153, 225);
+	line-height: 20px;
 }
 
 nav ul li:hover {
-	background: rgb(100, 100, 100);
+	background: yellow;
 }
 
 .container {
@@ -82,7 +95,7 @@ section div {
 #leftTextLeft,
 #rightTextLeft {
 	width: 30px;
-	height: 300px;
+	height: 600px;
 	left: -30px;
 	top: -305px;
 }
@@ -91,7 +104,7 @@ section div {
 #rightText {
 	width: 300px;
 	height: 30px;
-	top: 0px;
+	top: 4px;
 }
 
 /*цифра и буква*/

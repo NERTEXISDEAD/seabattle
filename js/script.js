@@ -234,7 +234,7 @@ function checkWinner() {
 		console.log('winner not');
 	}
 	else if (gamer > 19 && comp < 20) {
-		$('#info').html('<p><h3 id="blinkText">Игрок ' + name + ' победил!<br>Нажмите "Старт" для новой игры</h3></p>');
+		$('#info').html('<p><h3 id="blinkText">Игрок ' + nameGamer + ' победил!<br>Нажмите "Старт" для новой игры</h3></p>');
 		colorToField(' ', true);
 		$('#leftShade').show();
 		$('#rightShade').show();
